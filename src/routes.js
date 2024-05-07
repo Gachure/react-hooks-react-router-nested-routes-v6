@@ -1,3 +1,4 @@
+import App from "./App";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -7,24 +8,27 @@ import ErrorPage from "./pages/ErrorPage";
 const routes = [
   {
     path: "/",
-    element: <Home />,
-    errorElement: <ErrorPage />
-  }, 
-  {
-    path: "/about",
-    element: <About />,
-    errorElement: <ErrorPage />
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />, // Nested route
+      },
+      {
+        path: "/about",
+        element: <About />, // Nested route
+      },
+      {
+        path: "/login",
+        element: <Login />, // Nested route
+      },
+      {
+        path: "/profile/:id",
+        element: <UserProfile />, // Nested route
+      },
+    ],
   },
-  {
-    path: "/login",
-    element: <Login />,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: "/profile/:id",
-    element: <UserProfile />,
-    errorElement: <ErrorPage />
-  }
 ];
 
 export default routes;
